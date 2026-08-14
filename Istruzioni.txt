@@ -1,0 +1,68 @@
+L'applicazione che devi generare è un'applicazione che serve per assistere i tracciatori di vie di climbing indoor su pareti di arrampicata in palestre indoor.
+La tracciatura delle vie di arrampicata in palestre di climbing indoor consiste nel sistemare le prese sulla parete in modo da creare una sequenza utilizzabile per una persona per poter risalire l'intera parete utilizzando solo mani e piedi.
+Utilizza la tua conoscenza generare in ambito di climbing e climbing indoor per capire le dinamiche dell'arrampicata, delle prese e della tracciatura delle vie.
+
+STRUMENTI PER LO SVILUPPO
+L'applicazione che voglio sviluppare deve seguire questa architettura tecnica:
+- l'applicazione deve avere una parte backend realizzata con il linguaggio C# ASP.NET Core Web API
+- l'applicazione deve essere utilizzabile dagli utenti esclusivamente via browser, gli utenti non devono installare nessun software o nessuna libreria per poterla utilizzare
+- il frontend deve essere implementato tramite il motore grafico three.js, il rendering deve essere completamente lato frontend, non devono esserci rendering lato server
+- backend e frontend devono comunicare tra loro tramite REST API ed il linguaggio utilizzato per la comunicazione deve essere il JSON. Le API devono essere sviluppate secondo gli standard di progettazione OpenAPI, con separazione Controller/Service e swagger documentativo
+- Rapier deve essere il motore fisico da utilizzare per implementare tutte le regole fisiche di un mondo reale applicabili ai modelli 
+- Three.js deve essere utilizzato esclusivamente per il rendering della scena 3D. Rapier deve essere utilizzato come motore fisico responsabile della gestione delle collisioni, dei contatti e dei vincoli di movimento.
+
+Nel beckend devono essere previste delle cartelle contenenti i modelli GLB statici da caricare, sia per la parete che per tutte le singole prese.
+Nella cartella "Pareti" sarà presente il modello 3D della parete su cui tracciare.
+Nella cartella "Prese" saranno presenti una cartella per ciascun modello di presa, ogni cartella ha nome "Hold" seguito da un suffisso numerico, ogni cartella contiene i file per la visualizzazione del modello stesso. Per le prese potrebbero esserci solo i file GLB o anche i file delle texture o altri file necessari per tutte le caratteristiche del modello, l'applicazione deve gestire il caricamento di solo i file che vengono trovati.
+Tutti i file dei modelli devono essere considerati come file statici da caricare in locale.
+
+FUNZIONAMENTO DELL'APPLICAZIONE
+L'applicazione dovrà presentare un ambiente 3D in cui le pareti su cui tracciare le vie e le prese da utilizzare per la tracciatura sono modelli 3D.
+L'utente dovrà poter selezionare le prese da utilizzare ed utilizzare appositi bottoni per spostarle sulle pareti adeguando l'inclinazione delle prese all'inclinazione delle pareti.
+L'utente deve avere a disposizione i bottoni necessari per muovere le prese in tutte le direzioni nello spazio 3D, ed anche per cambiarne orientamento ed inclinazione.
+Gli stessi comandi disponibili tramite i bottoni devono essere disponibili anche tramite shortcut da tastiera, prevedi tu l'associazione tra gli shortcut migliori ed i bottoni.
+L'utente può aggiungere qualsiasi presa una sola volta , e può anche rimuoverle dalla parete.
+Il movimento delle prese sulle pareti deve essere regolato tramite le seguenti regole fisiche:
+- la gravità deve essere disabilitata
+- le prese devono essere considerate corpi rigidi statici durante il posizionamento
+- la collision detection deve essere continua continua
+- non deve essere presente nessuna simulazione dinamica
+- non deve essere presente nessuna inerzia
+- non deve essere presente nessun rimbalzo
+- non deve essere previsto nessun attrito
+- deve essere prevista solo la rilevazione collisioni
+- le prese non possono sovrapporsi, ovvero quando a seguito del movimento di una presa da parte dell'utente, questa entra a contatto con la parete o con altre prese, quella stessa presa non potrà più proseguire il suo movimento nella direzione che porta all'oggetto con cui è entrata in contatto. Ad esempio, se cammino verso un muro, arrivato a contatto con il muro non posso procedere più nella direzione che mi porterebbe ad attraversare il muro, ma posso procedere in tutte le altre direzioni fintanto che non incontro un'altro oggetto che mi blocca, l'applicazione deve ragionare in questo modo per gestire il movimento delle prese.
+
+Per la gestione dei modelli è utilizzare un sistema di coordinate cartesiane destrorso coerente con Three.js.
+
+Tutti i modelli devono essere espressi in centimetri. 
+1 unità di Three.js è uguale a 1 CM.
+
+PRESENTAZIONE UI
+La UI dell'applicazione deve essere semplice e moderna.
+Tutte le prese disponnibili devono essere riportate in un pannello sulla sinistra dello schermo, una sotto l'altra.
+Per ogni presa deve essere visualizzato un'anteprima del modello in modo che l'utente possa capire di che presa si tratta.
+Per ogni presa deve essere presente un bottone "Utilizza" che la rimuove dalla lista del menu e ne renderizza il modello nello spazio 3D dedicato alla tracciatura.
+Tutto il resto dello spazio disponibile nella UI deve essere utilizzato per visualizzare il modello 3D della parete su cui tracciare e muovere le prese.
+
+SALVATAGGIO DELLE TRACCIATURE
+Al momento non deve essere presente nessun sistema di salvataggio delle tracciature realizzate dall'utente.
+Al termine del lavoro di tracciatura l'utente deve avere la possibilità tramite un apposito bottone di realizzare un'immagine PDF che rappresenti una foto 
+
+
+LAYER DI TEST
+Per rendere più consistente possibile l'applicazione, in modo da garantirne il funzionamento corretto dell'applicazione ad ogni nuova modifica o implementazione, devi realizzare un layer completo di test in modo che in seguito alla stesura del codice con esito positivo della compilazione, possano essere eseguiti tutti i test automatici necessari per la validazione del funzionamento runtime dell'applicazione.
+I test devono valutare completamente il funzionamento delle API REST presenti nell'applicazione, valutandone il funzionamento ed i risultati restituiti.
+Devono essere previsti anche i test per le valutazioni del funzionamento delle regole fisiche implementate con il motore grafico 3D rapier, è fondamentale che tutte le regole di movimento delle prese in relazione tra loro ed in relazione alla parete vengano testate e validate ad ogni modifica implementata all'applicazione.
+Prevedi la modalità migliore per implementare questi controlli lato UI.
+
+DOCUMENTAZIONE
+Tutta l'applicazione deve completamente documentata, la documentazione deve essere implementata in due modi:
+- il codice scritto sia lato frontend che lato backend deve essere il più documentato possibile, la documentazione deve essere scritta in lingua italiana e deve essere riportata in tutti i metodi e tutte le classi in modo che sia più semplice per un programmatore leggere ed interpretare il codice scritto
+- deve essere realizzato un documento markdown di documentazione completa dell'intera applicazione, questo documento deve spiegare tutta l'applicazione nel dettaglio, il suo funzionamento e la sua logica, inoltre deve descrivere tutta la struttura software dettagliando ogni componente applicativo. In questa documentazione deve essere riportato anche come avviare ed eseguire l'applicazione sia live che in debug.
+Sempre come documentazione vorrei che realizzassi anche i seguenti diagrammi in modo che sia chiaro comprendere ogni aspetto dell'applicazione:
+- diagramma architetturale
+- diagramma delle cartelle dei sorgenti
+- diagramma delle API
+- diagramma del ciclo di vita delle prese
+- diagramma del flusso della UI

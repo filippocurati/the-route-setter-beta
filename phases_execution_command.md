@@ -3,7 +3,7 @@
 ## Vincoli in sviluppo fase
 
 Leggi integralmente: Istruzioni.md, Istructions.md e tutti i file in sdd-spec.
-Implementa SOLO la che ti viene comunicata inerente al SDD-V3/03-piano-implementazione.md, senza anticipare fasi successive.
+Implementa SOLO la che ti viene comunicata inerente al sdd-specs/03-piano-implementazione.md, senza anticipare fasi successive.
 Rispetta 00-costituzione.md e 01-specifica-requisiti.md.
 
 Tutte le implementazioni devono essere svolte nella cartella "source".

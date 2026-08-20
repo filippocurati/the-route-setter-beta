@@ -6,6 +6,12 @@ Leggi integralmente: Istruzioni.md, Istructions.md e tutti i file in sdd-spec.
 Implementa SOLO la che ti viene comunicata inerente al SDD-V3/03-piano-implementazione.md, senza anticipare fasi successive.
 Rispetta 00-costituzione.md e 01-specifica-requisiti.md.
 
+Tutte le implementazioni devono essere svolte nella cartella "source".
+In questa cartella devono essere presenti tutti i file contenenti i sorgenti dell'applicazione.
+Le cartelle contenenti i file statici dei modelli sono esterne alla cartella "source" e rispecchiano le strutture descritte nelle specifiche.
+
+Ogniqualvolta devono essere modificati file di specifica per poter procedere con l'implementazione in maniera consistente e coerente con le specifiche, deve essere interrotto lo sviluppo della fase e la situazione considerata e notificata come un errore bloccante.
+
 ## Output post implementazione fase
 
 Al termine dell'implementazione della fase richiesta genera un file markdown che riepiloga il risultato delle implementazioni svolte. 

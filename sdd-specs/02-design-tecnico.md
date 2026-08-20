@@ -158,7 +158,7 @@ Metodo vincolante:
 ## 12. Gestione versioni dipendenze
 
 - npm: usare versioni esatte e lockfile versionato.
-- NuGet: usare versioni esatte e lock file ripristino deterministico versionato.
+- NuGet: usare versioni esatte espresse come intervalli chiusi (esempio: `[1.1.19.504]`) e lock file ripristino deterministico versionato.
 - vietate versioni floating nei package applicativi.
 - CI deve ripristinare da lock e fallire in caso di drift non intenzionale.
 
@@ -166,9 +166,10 @@ Versioni iniziali da adottare (vincolanti) come baseline:
 - Frontend runtime: `three@0.161.0`, `@dimforge/rapier3d-compat@0.12.0`.
 - Frontend build/tooling: `vite@5.2.0`, `typescript@5.4.5`.
 - Frontend test: `vitest@1.6.0`, `@playwright/test@1.44.0`.
-- Backend/runtime: `Serilog.AspNetCore@8.0.1`, `Serilog.Sinks.File@5.0.0`, `SharpGLTF.Core@1.0.0`, `MIConvexHull@1.1.19`.
+- Backend/runtime: `Serilog.AspNetCore@8.0.1`, `Serilog.Sinks.File@5.0.0`, `SharpGLTF.Core@1.0.0`, `MIConvexHull@1.1.19.504`.
 - Backend test: `xunit@2.7.1`, `Microsoft.AspNetCore.Mvc.Testing@8.0.5`.
-- Framework target: `.NET 8` LTS.
+- Framework target: `.NET 8` LTS; SDK `8.0.424`.
+- Toolchain frontend: `Node.js 22.18.0` LTS con `npm 10.9.3`.
 
 Regola aggiornamenti:
 - aggiornamenti ammessi solo tramite PR dedicata;

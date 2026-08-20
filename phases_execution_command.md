@@ -19,6 +19,8 @@ Riporta nel file le seguenti informazioni:
 Nel caso in cui l'implementazione della fase sia stata completata con successo il file deve essere chiamato `Phase_[X]_implementation_done.md`.
 Nel caso in cui l'implementazione della fase abbia riscontrato errori bloccanti che non sei riuscito a correggere anche con diverse iterazioni o blocchi dovuti a limiti tecnici architetturali, il file deve essere chiamato `Phase_[X]_implementation_block.md`. 
 
+I file di risultato devono essere salvati nella cartella phases-outcome.
+
 Per entrambi i file al posto del placeholder [X] deve essere riportato il numero della fase processata.
 Il contentuto del file generato deve rispettare i punti sopra indicati, nel caso di blocco a causa di errori deve essere ben documentato il punto 4 relativo ai problemi riscontrati.
 
